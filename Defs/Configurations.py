@@ -9,7 +9,7 @@ class ConfigurationManager:
         config.add_section("Settings")
         config.add_section("Defaults")
         # config.set("Settings", "Language", "en") #TODO LANGUAGE SYSTEM WILL BE IMPLEMENTED LATER
-        config.set("Settings", "DidBackground", "True")
+        config.set("Settings", "logger", "True")
         config.set("Defaults", "webPage", "Facebook")
         config.set("Defaults", "additionalOption", "1")
         config.set("Defaults", "theme", "anaglyph")

