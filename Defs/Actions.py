@@ -875,7 +875,7 @@ def endMessage():  # Message when HiddenEye exit
     choice = input(
         "\n\n{0}[{1}?{0}] Re-run(r) : Exit(x) : Send Email(M)\n\n >> {2}".format(MAIN0, MAIN4, MAIN2)).upper()
     if choice == 'R':
-        system('sudo python3 HiddenEye.py')
+        system('python3 HiddenEye.py')
     elif choice == 'M':
         emailPrompt3()
     elif choice == 'X':
