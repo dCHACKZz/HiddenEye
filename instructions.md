@@ -12,6 +12,8 @@ sudo hidden-eye
 git clone https://github.com/DarkSecDevelopers/HiddenEye.git
 ```
 
+
+
 ### RUNNING (In Linux)
 ```
 chmod 777 HiddenEye
